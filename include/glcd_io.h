@@ -40,7 +40,6 @@
 #include "include/glcd_arduino_io.h"    // these macros map arduino pins & set CORE defines
 #include GLCDCFG_GLCDCONFIG				// include glcd panel config file
 
-
 /*
  * Must set AVRIO modes before including avrio
  */
@@ -68,6 +67,23 @@
 #define GLCD_STATUS_BIT2PIN(bit)    xGLCD_STATUS_BIT2PIN(bit)    
 
 
+#ifdef GLCD_MCP23X17 // ================== Begin MCP23S17/ MCP23X17 io expander code ===============================
+#include <MCP23X17.h>
+
+
+#define	glcdio_WritePin(pin, value) GLCD_MCP23X17.digitalWrite(pin, value)
+#define	glcdio_ReadPin(pin) GLCD_MCP23X17.digitalRead(pin)
+
+#define glcdio_WriteByte(data) GLCD_MCP23X17.digitalWrite_8(mcpDataPort, data)
+#define glcdio_ReadByte() GLCD_MCP23X17.digitalRead_8(mcpDataPort)
+
+#define glcdio_DataDirIn() GLCD_MCP23X17.pinMode_8(mcpDataPort, 0xFF)
+#define glcdio_DataDirOut() GLCD_MCP23X17.pinMode_8(mcpDataPort, 0x00)
+
+#define glcdio_PinMode(pin, dir) GLCD_MCP23X17.pinMode(pin, dir) 
+
+
+#else   			// ================== End MCP23S17/ MCP23X17 io expander code ===============================
 #ifdef  _AVRIO_AVRIO_ // ================= Begin _AVRIO_AVRIO_ specific code =============================
 
 
@@ -226,8 +242,8 @@ do {									\
 }while (0)
 
 
-#endif // ================= End of non AVRIO stuff =============================
-
+#endif /* ================= End of non AVRIO stuff =============================*/
+#endif /*  MCP23X17 else */
 
 /*
  * alias to set RW and DI pins
