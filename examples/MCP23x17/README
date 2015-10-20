@@ -1,0 +1,1 @@
+These examples use either a MCP23017 or a MCP23S17 io-expander instead of connection GLCD directly to the Arduino. The required MCP23x17 library is avialable at https://github.com/aheinous/IO_Expander

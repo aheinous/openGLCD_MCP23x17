@@ -12,24 +12,18 @@
 #define GLCD_PIN_CONFIG_H
 
 
-#include <MCP23x17.h> 
 /*
  * define name for pin configuration
  */
 #define glcd_PinConfigName "ks0108-Mega"
 
-/*********************************************************/
-/*  Configuration for assigning LCD bits to Arduino Pins */
-/*********************************************************/
+/******************************************************************/
+/*  The configuartion below is for use of a MCP23x17 io-expander  */
+/******************************************************************/
 
-/*
- * Pins can be assigned using Arduino pin numbers 0-n
- * Pins can also be assigned using PIN_Pb 
- *    where P is port A-L and b is bit 0-7
- *    Example: port D bit 3 is PIN_D3
- *
- */
 
+
+#include <MCP23x17.h> 
 
 // The function get_glcd_MCP23x17() must be defined in sketch.
 I_IOExpander16 * get_glcd_MCP23x17();
@@ -73,6 +67,11 @@ I_IOExpander16 * get_glcd_MCP23x17();
 #define glcdPinData5 IOEX16_B5
 #define glcdPinData6 IOEX16_B6
 #define glcdPinData7 IOEX16_B7
+
+
+/*****************************/
+/*  Normal Configuration     */
+/*****************************/
 
 // #define glcdPinData0    22
 // #define glcdPinData1    23
