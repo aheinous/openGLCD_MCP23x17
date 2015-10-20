@@ -12,7 +12,7 @@
 #define GLCD_PIN_CONFIG_H
 
 
-#include <MCP23X17.h> 
+#include <MCP23x17.h> 
 /*
  * define name for pin configuration
  */
@@ -30,15 +30,17 @@
  *
  */
 
-I_IOExpander16 * get_glcd_MCP23X17();
+
+// The function get_glcd_MCP23x17() must be defined in sketch.
+I_IOExpander16 * get_glcd_MCP23x17();
 
 
-#define GLCD_MCP23X17 (*get_glcd_MCP23X17())
+#define GLCD_MCP23x17 (*get_glcd_MCP23x17())
 
 // data pins are Port B //
 
 #define glcdPinCSEL1     IOEX16_A3    // CS1 Bit  
-#define glcdPinCSEL2     IOEX16_A4   // CS2 Bit
+#define glcdPinCSEL2     IOEX16_A4    // CS2 Bit
 #define glcdPinRW        IOEX16_A1    // R/W Bit
 #define glcdPinDI        IOEX16_A0    // D/I Bit 
 #define glcdPinEN        IOEX16_A2    // EN Bit
@@ -62,7 +64,6 @@ I_IOExpander16 * get_glcd_MCP23X17();
 
 /*
  * Data pin definitions
- * This version uses pins 22-29 for LCD Data 
  */
 #define glcdPinData0 IOEX16_B0
 #define glcdPinData1 IOEX16_B1
